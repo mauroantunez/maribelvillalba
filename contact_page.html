@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Maribel Villalba</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center;
+            animation: slideIn 0.5s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .profile {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .name {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .title {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+        
+        .contact-info {
+            margin: 20px 0;
+            text-align: left;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin: 12px 0;
+            color: #555;
+        }
+        
+        .contact-item span {
+            margin-left: 12px;
+        }
+        
+        .download-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin: 20px 0;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .download-btn:active {
+            transform: translateY(0);
+        }
+        
+        .instructions {
+            background: #f8f9ff;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: left;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .os-specific {
+            display: none;
+        }
+        
+        .icon {
+            width: 20px;
+            height: 20px;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="profile">MV</div>
+        <div class="name">Maribel Villalba</div>
+        <div class="title">Compras y Servicios Generales</div>
+        
+        <div class="contact-info">
+            <div class="contact-item">
+                <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z"/>
+                </svg>
+                <span>+595 982 911 626</span>
+            </div>
+            <div class="contact-item">
+                <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"/>
+                </svg>
+                <span>maribel.villalba@bricapar.com.py</span>
+            </div>
+        </div>
+        
+        <button class="download-btn" onclick="downloadContact()">
+            📱 Guardar Contacto
+        </button>
+        
+        <div class="instructions" id="android-instructions">
+            <strong>📋 Instrucciones para Android:</strong><br>
+            1. Toca el botón "Guardar Contacto"<br>
+            2. Se descargará un archivo<br>
+            3. Abre el archivo desde las notificaciones<br>
+            4. Selecciona "Contactos" para añadir
+        </div>
+        
+        <div class="instructions" id="ios-instructions">
+            <strong>📋 Instrucciones para iOS:</strong><br>
+            1. Toca el botón "Guardar Contacto"<br>
+            2. Se abrirá automáticamente<br>
+            3. Confirma "Añadir contacto"
+        </div>
+    </div>
+
+    <script>
+        // Detectar sistema operativo
+        function detectOS() {
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            
+            if (/android/i.test(userAgent)) {
+                document.getElementById('android-instructions').style.display = 'block';
+                return 'android';
+            }
+            
+            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                document.getElementById('ios-instructions').style.display = 'block';
+                return 'ios';
+            }
+            
+            // Por defecto mostrar instrucciones de Android
+            document.getElementById('android-instructions').style.display = 'block';
+            return 'other';
+        }
+        
+        function downloadContact() {
+            const vcfContent = `BEGIN:VCARD
+VERSION:3.0
+FN:Maribel Villalba
+N:Villalba;Maribel;;;
+ORG:Bricapar
+TITLE:Compras y Servicios Generales
+TEL;TYPE=CELL:+595982911626
+EMAIL;TYPE=WORK:maribel.villalba@bricapar.com.py
+URL:https://github.com/mauroantunez/maribelvillalba
+NOTE:Contacto creado para descarga via QR
+REV:2025-09-18T00:00:00Z
+END:VCARD`;
+            
+            const blob = new Blob([vcfContent], { type: 'text/vcard;charset=utf-8' });
+            const url = window.URL.createObjectURL(blob);
+            
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'MaribelVillalba.vcf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            window.URL.revokeObjectURL(url);
+        }
+        
+        // Inicializar
+        detectOS();
+    </script>
+</body>
+</html>
